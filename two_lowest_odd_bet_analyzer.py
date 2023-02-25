@@ -26,7 +26,9 @@ with open(CSV_FILE, newline='') as csvfile:
         points_found = points2invest(lowest_2_values[0], lowest_2_values[1])
         
         # Invest the points and update the money variables
-        if points_found[0] != 0 and points_found[1] != 0:
+        # The third condition can change everything. If the distance between the two lowest odds is enough great:
+        # then there is a win
+        if points_found[0] != 0 and points_found[1] != 0 and lowest_2_values[1] - lowest_2_values[0] > 3.09:
             MONEY_LOW_ODD += points_found[0]
             MONEY_HIGH_ODD += points_found[1]
             
@@ -43,4 +45,4 @@ print("Money high odd invested:", MONEY_HIGH_ODD)
 print("Money invested:", MONEY_LOW_ODD + MONEY_HIGH_ODD)
 print("Money total made:", MONEY_TOTAL_MADE)
 print("Money lost:", MONEY_LOST)
-print("Final win:", MONEY_TOTAL_MADE - (MONEY_LOW_ODD + MONEY_HIGH_ODD))
+print("Final win:", round(MONEY_TOTAL_MADE - (MONEY_LOW_ODD + MONEY_HIGH_ODD),2))
