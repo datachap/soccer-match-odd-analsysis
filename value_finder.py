@@ -6,8 +6,8 @@ def points2invest(odds_low, odds_high):
     B = [0, 0]
 
     # Define the lower and upper bounds of the variables
-    x_bounds = (50, 150)
-    y_bounds = (50, 150)
+    x_bounds = (100, 300)
+    y_bounds = (100, 300)
 
     # Use linprog to solve the problem
     res = linprog(c=[1, 1], A_ub=A, b_ub=B, bounds=[x_bounds, y_bounds])
