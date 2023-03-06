@@ -4,7 +4,7 @@ from value_finder import points2invest
 
 
 # Define constants and variables
-CSV_FILE = 'matches.csv'
+CSV_FILE = 'matches_lowest_odd.csv'
 MONEY_LOW_ODD = 0
 MONEY_HIGH_ODD = 0
 MONEY_LOST = 0
