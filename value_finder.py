@@ -1,8 +1,8 @@
 from scipy.optimize import linprog
 
 # Define the coefficients of the inequalities
-def points2invest(odds_low, odds_high):
-    A = [[-(odds_low-1.10), 1.10], [1.10, -(odds_high-1.10)]]
+def points2invest(odds_low, odds_high, markup_value):
+    A = [[-(odds_low-markup_value), markup_value], [markup_value, -(odds_high-markup_value)]]
     B = [0, 0]
 
     # Define the lower and upper bounds of the variables

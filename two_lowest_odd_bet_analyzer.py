@@ -9,6 +9,7 @@ MONEY_LOW_ODD = 0
 MONEY_HIGH_ODD = 0
 MONEY_LOST = 0
 MONEY_TOTAL_MADE = 0
+MARKUP = 1.10
 
 
 # Open the CSV file and process the data
@@ -23,7 +24,7 @@ with open(CSV_FILE, newline='') as csvfile:
         lowest_2_values = [float(x) for x in row[1].split(',')]
         
         # Calculate the investment points for the two lowest odds
-        points_found = points2invest(lowest_2_values[0], lowest_2_values[1])
+        points_found = points2invest(lowest_2_values[0], lowest_2_values[1], MARKUP)
         
         # Invest the points and update the money variables
         # The third condition can change everything. If the distance between the two lowest odds is enough great:
