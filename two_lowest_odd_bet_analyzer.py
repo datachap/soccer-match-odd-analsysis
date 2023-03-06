@@ -22,7 +22,6 @@ with open(CSV_FILE, newline='') as csvfile:
         # Get the winning odd and two lowest odds
         odd_won = float(row[0])
         lowest_2_values = [float(x) for x in row[1].split(',')]
-        
         # Calculate the investment points for the two lowest odds
         points_found = points2invest(lowest_2_values[0], lowest_2_values[1], MARKUP)
         
