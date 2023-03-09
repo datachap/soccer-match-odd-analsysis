@@ -1,11 +1,7 @@
 import csv
 
-# All the constants used
-FILE_NAME = "games_with_all_odds.csv"
-OUTPUT_FILE = "output.txt"
-
-def value_extractor():
-    with open(FILE_NAME, newline='') as csvfile, open(OUTPUT_FILE, 'w') as outfile:
+def value_extractor(file_name):
+    with open(file_name, newline='') as csvfile, open("output.txt", 'w') as outfile:
         reader = csv.reader(csvfile)
         next(reader)  # skip first row
         row_count = 1
@@ -25,7 +21,7 @@ def value_extractor():
                     outfile.write(f"The row with an incosistency is: {row_count}\n")
                     outfile.write(f"First and last value of block diffs: {first_diff}, {last_diff}\n")
                     outfile.write(f"First and last index: {sorted_diffs_indices[0] + 1 }, {sorted_diffs_indices[-1] + 1}\n")
-                    outfile.write(f"Block indices sorted by difference: {[i + 1 for i in sorted_diffs_indices]}\n")
+                    outfile.write(f"Blocks at indices {sorted_diffs_indices[0] + 1} and {sorted_diffs_indices[-1] + 1}: {values[sorted_diffs_indices[0]*3:(sorted_diffs_indices[0]+1)*3]}, {values[sorted_diffs_indices[-1]*3:(sorted_diffs_indices[-1]+1)*3]}\n")
 
-
-value_extractor()
+#TODO Add the part where it will give back the blocks and check then arbirtrage betting principle
+value_extractor("games_with_all_odds.csv")
