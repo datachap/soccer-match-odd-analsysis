@@ -8,5 +8,13 @@ use [this link](https://www.football-data.co.uk/)
 
 There are different analysis being done in this playground:
 * Analyzing matches based on two lowest odds and finding the best strategy to win more money.
-For this idea the following scripts are being used:
-> two_lowest_odd_bet_analyzer and value_finder
+For this idea the following files are being used:
+> *two_lowest_odd_bet_analyzer 
+> *value_finder
+> *matches_lowest_odd.csv
+
+* Analyzing all odds and finding all the matches where we can apply arbitrage betting.
+And it will calculate a certain margin, to check if it is possible to earn more than round about 10%.
+The following files are used:
+> *arbitrage_betting_value_detector
+> *games_with_all_odds
