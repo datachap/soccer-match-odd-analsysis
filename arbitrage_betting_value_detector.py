@@ -1,13 +1,14 @@
 import csv
+import os
 
 # This method is a private method to update the output.csv file with the extrapulated information
-def _value_2_csv(*args):
-    with open("arbitrage_odds_to_calculate.csv", 'a', newline='') as outfile:
+def _value_2_csv(filename, *args):
+    with open(filename, 'a', newline='') as outfile:
         csv_writer = csv.writer(outfile)
         csv_writer.writerow(args)
     
 
-def value_extractor(file_name):
+def _value_extractor(file_name):
     # Open the input and output files
     with open(file_name, newline='') as csvfile:
         reader = csv.reader(csvfile)
@@ -36,7 +37,36 @@ def value_extractor(file_name):
                 # Check if the blocks satisfy the arbitrage betting principle
                 if first_diff * last_diff < 0:
                     # Update the output file with the relevant information
-                    _value_2_csv(row[0], *values[sorted_diffs_indices[0]*3:(sorted_diffs_indices[0]+1)*3], *values[sorted_diffs_indices[-1]*3:(sorted_diffs_indices[-1]+1)*3])
+                    _value_2_csv("arbitrage_odds_to_calculate.csv", row[0], *values[sorted_diffs_indices[0]*3:(sorted_diffs_indices[0]+1)*3], *values[sorted_diffs_indices[-1]*3:(sorted_diffs_indices[-1]+1)*3])
 
-# Extract values from the input file and output the relevant information to a CSV file
-value_extractor("games_with_all_odds.csv")
+
+
+def arbitrage_betting_final_odds_calculation():
+    
+    # Extract values from the input file and output the relevant information to a CSV file
+    _value_extractor("games_with_all_odds.csv")
+    
+    
+    with open(file="arbitrage_odds_to_calculate.csv", newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        
+        for row in reader:
+            home_odd = 0
+            draw_odd = 0
+            away_odd = 0
+            
+            if row[1] < row[3]:
+                home_odd = row[4]
+                away_odd = row[3]
+            else:
+                home_odd = row[1]
+                away_odd = row[6]
+            if row[2] < row[5]:
+                draw_odd = row[5]
+            else:
+                draw_odd = row[2]
+            
+            _value_2_csv("final_output.csv", row[0], home_odd, draw_odd, away_odd)
+            
+arbitrage_betting_final_odds_calculation()
+                
